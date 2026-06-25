@@ -10,9 +10,7 @@ st.title("Vector Database and Embedding")
 st.header("1. Tổng quan về Vector Database và Embedding")
 
 st.markdown("""
-**Vector Database** (hay còn gọi là *vector store* hoặc *vector search engine*) là một loại cơ sở dữ liệu được thiết kế chuyên biệt để **lưu trữ, chỉ mục và truy vấn các vector embeddings** — tức các biểu diễn số của dữ liệu phức tạp như **hình ảnh, văn bản, âm thanh, sensor data,...**
-
-Vector Database đặc biệt phù hợp với dữ liệu **đa chiều** (*high-dimensional data*), trong đó mỗi đối tượng được biểu diễn bằng một vector có thể gồm **hàng trăm đến hàng chục nghìn chiều**.
+**Vector Database** (hay còn gọi là *vector store* hoặc *vector search engine*) là một loại cơ sở dữ liệu được thiết kế chuyên biệt để **lưu trữ, chỉ mục và truy vấn các vector embeddings** — tức các biểu diễn số của dữ liệu phức tạp như **hình ảnh, văn bản, âm thanh, sensor data,...**. Vector Database đặc biệt phù hợp với dữ liệu **đa chiều** (*high-dimensional data*), trong đó mỗi đối tượng được biểu diễn bằng một vector có thể gồm **hàng trăm đến hàng chục nghìn chiều**.
 """)
 
 st.markdown("""
@@ -24,23 +22,22 @@ Việc biểu diễn dữ liệu dưới dạng vector giúp các hệ thống A
 - xử lý dữ liệu phức tạp mà không cần làm việc trực tiếp với ngôn ngữ tự nhiên, hình ảnh thô hay tín hiệu âm thanh.
 """)
 
-st.info("Ý tưởng cốt lõi: dữ liệu thô → embedding vector → indexing → similarity search")
 
-
-st.image('assets/vectordatabase.jpg', caption='Overview of Vector Database', use_container_width=True)
+st.image('assets/vectordatabase.JPG', caption='Vector Database', use_container_width=True)
+st.image('assets/embedding.JPG', caption='Embedding', use_container_width=True)
 
 # 2. INDEXING
 
 st.header("2. Indexing trong Vector Database")
 
 st.markdown("""
-Sau khi dữ liệu đã được chuyển đổi thành **vector embedding**, bước tiếp theo là **indexing** — tức xây dựng **chỉ mục** để tối ưu hoá khả năng truy vấn và tìm kiếm.
+Sau khi dữ liệu đã được chuyển đổi thành vector embedding, bước tiếp theo là **indexing** — tức xây dựng **chỉ mục** để tối ưu hoá khả năng truy vấn và tìm kiếm.
 
-Nếu không có chỉ mục, hệ thống thường phải so sánh vector truy vấn với **toàn bộ vector trong cơ sở dữ liệu**, điều này trở nên rất tốn kém khi số lượng vector lớn.  
+Nếu không có chỉ mục, hệ thống thường phải so sánh vector truy vấn với toàn bộ vector trong cơ sở dữ liệu**, điều này trở nên rất tốn kém khi số lượng vector lớn.  
 Do đó, các kỹ thuật indexing được sử dụng để:
 - giảm thời gian tìm kiếm,
 - tiết kiệm tài nguyên tính toán,
-- hỗ trợ **Approximate Nearest Neighbor Search (ANN)** trên tập dữ liệu lớn.
+- hỗ trợ Approximate Nearest Neighbor Search (ANN) trên tập dữ liệu lớn.
 """)
 
 st.markdown("## Các loại index")
@@ -50,13 +47,10 @@ st.markdown("## Các loại index")
 st.subheader("2.1. Flat Index")
 
 st.markdown("""
-**Flat Index** là một tên gọi khác của **tìm kiếm brute-force**.  
-Toàn bộ các vector được lưu trữ trong một cấu trúc chỉ mục duy nhất mà **không có bất kỳ tổ chức phân cấp nào**.
-
-Khi có một vector truy vấn, hệ thống sẽ tính khoảng cách từ vector đó tới **tất cả các vector trong dataset**, sau đó chọn ra vector gần nhất hoặc top-k vector gần nhất.
+**Flat Index** là một tên gọi khác của tìm kiếm brute-force. Toàn bộ các vector được lưu trữ trong một cấu trúc chỉ mục duy nhất mà **không có bất kỳ tổ chức phân cấp nào**. Khi có một vector truy vấn, hệ thống sẽ tính khoảng cách từ vector đó tới **tất cả các vector trong dataset**, sau đó chọn ra vector gần nhất hoặc top-k vector gần nhất.
 """)
 
-st.markdown("### Đặc điểm")
+st.markdown("### Đặc điểm:")
 st.markdown("""
 - **Chính xác tuyệt đối** vì so sánh với toàn bộ vector trong dataset.
 - **Không cần build index phức tạp**.
@@ -66,7 +60,6 @@ st.markdown("""
 st.markdown("### Minh hoạ")
 st.markdown("""
 Nếu cơ sở dữ liệu có $N$ vector và mỗi vector có $d$ chiều, thì với một truy vấn $q$, Flat Index sẽ tính khoảng cách:
-
 $$
 d(q, x_i), \quad i = 1, 2, \dots, N
 $$
@@ -74,21 +67,19 @@ $$
 với mọi vector $x_i$ trong cơ sở dữ liệu.
 """)
 
-# =========================================================
+
 # 2.2 IVF
-# =========================================================
+
 st.subheader("2.2. Inverted File Index (IVF)")
 
 st.markdown("""
-**IVF (Inverted File Index)** là một kỹ thuật lập chỉ mục đơn giản và trực quan, thường được dùng trong các hệ thống truy xuất, và có thể được điều chỉnh cho cơ sở dữ liệu vector để thực hiện **Approximate Nearest Neighbor Search**.
-
-Ý tưởng chính của IVF là **không tìm kiếm trên toàn bộ dataset**, mà trước tiên chia dữ liệu thành nhiều **cluster**, sau đó chỉ tìm trong một số cluster phù hợp nhất với vector truy vấn.
+**IVF (Inverted File Index)** là một kỹ thuật lập chỉ mục đơn giản và trực quan, thường được dùng trong các hệ thống truy xuất, và có thể được điều chỉnh cho cơ sở dữ liệu vector để thực hiện **Approximate Nearest Neighbor Search**. Ý tưởng chính của IVF là **không tìm kiếm trên toàn bộ dataset**, mà trước tiên chia dữ liệu thành nhiều **cluster**, sau đó chỉ tìm trong một số cluster phù hợp nhất với vector truy vấn.
 """)
 
-st.markdown("### Đặc điểm")
+st.markdown("### Đặc điểm:")
 st.markdown("""
 - Sử dụng các thuật toán **phân cụm** để chia tất cả các vector trong dataset thành các vùng khác nhau (*clusters*).
-- Mỗi cluster có một **trọng tâm** (*centroid*) tương ứng.
+- Mỗi cluster có một **trọng tâm** (centroid) tương ứng.
 - Mỗi vector chỉ được gán vào **một cluster**, cụ thể là cluster có centroid gần nhất với vector đó.
 - Mỗi centroid duy trì thông tin về các vector thuộc về phân vùng của nó.
 """)
@@ -110,12 +101,11 @@ st.markdown("""
 - **IVF**: tìm cluster gần nhất trước, rồi chỉ tìm trong cluster đó
 """)
 
-# Nếu muốn chèn hình IVF sau này:
-# st.image('assets/images/ivf_diagram.png', caption='IVF Indexing', use_container_width=True)
+# st.image('assets/cluster.JPG', caption='IVF Indexing', use_container_width=True)
 
-# =========================================================
+
 # 2.3 PQ
-# =========================================================
+
 st.subheader("2.3. Product Quantization (PQ)")
 
 st.markdown("""
