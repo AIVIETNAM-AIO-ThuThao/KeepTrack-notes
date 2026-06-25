@@ -56,7 +56,7 @@ st.markdown("""
 - **Không cần build index phức tạp**.
 - **Chi phí tính toán cao** nếu dataset lớn, đặc biệt khi số lượng vector lên tới hàng triệu hoặc hơn.
 """)
-
+st.image('assets/k flat.JPG', caption='Flat Index', use_container_width=True)
 st.markdown("### Minh hoạ")
 st.markdown("""
 Nếu cơ sở dữ liệu có $N$ vector và mỗi vector có $d$ chiều, thì với một truy vấn $q$, Flat Index sẽ tính khoảng cách:
@@ -83,7 +83,7 @@ st.markdown("""
 - Mỗi vector chỉ được gán vào **một cluster**, cụ thể là cluster có centroid gần nhất với vector đó.
 - Mỗi centroid duy trì thông tin về các vector thuộc về phân vùng của nó.
 """)
-
+st.image('assets/cluster.JPG', caption='IVF Indexing', use_container_width=True)
 st.markdown("### Cách truy vấn với IVF")
 st.markdown("""
 Khi có một vector truy vấn:
@@ -101,7 +101,7 @@ st.markdown("""
 - **IVF**: tìm cluster gần nhất trước, rồi chỉ tìm trong cluster đó
 """)
 
-# st.image('assets/cluster.JPG', caption='IVF Indexing', use_container_width=True)
+
 
 
 # 2.3 PQ

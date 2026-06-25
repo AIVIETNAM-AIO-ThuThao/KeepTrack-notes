@@ -82,5 +82,44 @@ functions_data = {
 }
 
 df_functions = pd.DataFrame(functions_data)
-
 st.dataframe(df_functions, use_container_width=True, hide_index=True)
+
+
+st.markdown("## Các ký hiệu Markdown đã dùng")
+
+markdown_data = {
+    "Số thứ tự": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Ký hiệu Markdown": [
+        "##",
+        "###",
+        "*text*",
+        "**text**",
+        "-",
+        "$$ ... $$",
+        "`text`",
+        "Dòng trống giữa các đoạn"
+    ],
+    "Tác dụng": [
+        "Tạo tiêu đề cấp 2",
+        "Tạo tiêu đề cấp 3",
+        "In nghiêng văn bản",
+        "In đậm văn bản",
+        "Tạo danh sách bullet",
+        "Hiển thị công thức LaTeX dạng khối",
+        "Hiển thị inline code",
+        "Tách đoạn văn, tạo khoảng cách giữa các khối nội dung"
+    ],
+    "Ví dụ trong app này": [
+        "## Topics Covered",
+        "### 1. Vector Database and Embedding",
+        "*vector store*",
+        "**Vector Database**",
+        "- Flat Index",
+        "$$ d(q, x) \\approx ... $$",
+        "`st.title()`",
+        "Dùng để tách các đoạn mô tả và nội dung ghi chú"
+    ]
+}
+
+df_markdown = pd.DataFrame(markdown_data)
+st.dataframe(df_markdown, use_container_width=True, hide_index=True)
