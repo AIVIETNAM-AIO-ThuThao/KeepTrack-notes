@@ -1,9 +1,5 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="Vector Database and Embedding",
-    layout="wide"
-)
 
 st.title("Vector Database and Embedding")
 
