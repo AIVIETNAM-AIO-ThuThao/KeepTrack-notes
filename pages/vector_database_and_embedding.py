@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 
 st.title("Vector Database and Embedding")
@@ -22,7 +23,8 @@ Việc biểu diễn dữ liệu dưới dạng vector giúp các hệ thống A
 st.image('assets/vectordatabase.JPG', caption='Vector Database', use_container_width=True)
 st.image('assets/embedding.JPG', caption='Embedding', use_container_width=True)
 st.header("2. So sánh công cụ Vecto Database Tools")
-functions_data = {
+# tạo dict
+comparation = {     
     "Tool": [Faiss, Milvus, Weaviate, Weaviate, Weaviate],
     "Đặc điểm": [
         "Library C++/Python, không có persistence",
@@ -47,9 +49,10 @@ functions_data = {
     
 ]
 }
-
-df_functions = pd.DataFrame(functions_data)
-st.dataframe(df_functions, use_container_width=True, hide_index=True)
+# chuyển dict thành dataframe
+df_comparation = pd.DataFrame(comparation)
+# hàm của streamlit giúp hiển thị dataframe trên website
+st.dataframe(df_comparation, use_container_width=True, hide_index=True)
 
 # 2. INDEXING
 
