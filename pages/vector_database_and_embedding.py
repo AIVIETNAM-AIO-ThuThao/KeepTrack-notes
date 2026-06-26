@@ -20,7 +20,7 @@ Việc biểu diễn dữ liệu dưới dạng vector giúp các hệ thống A
 """)
 
 
-st.image('assets/vectordatabase.JPG', caption='Vector Database', use_container_width=True)
+st.image('assets/vectordatabase.JPG', caption='Vector Database', width=900)
 st.image('assets/embedding.JPG', caption='Embedding', use_container_width=True)
 st.header("2. So sánh công cụ Vecto Database Tools")
 # tạo dict

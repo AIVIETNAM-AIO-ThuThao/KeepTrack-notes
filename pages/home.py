@@ -17,7 +17,7 @@ st.title("Keep Track, ặc ặc")
 col1, col2 = st.columns([1, 3])
 
 with col1:
-    st.info("**Day 3**")
+    st.info("**Day 4**")
 
 with col2:
     st.caption(today.strftime("%B %d, %Y"))
@@ -88,7 +88,7 @@ st.dataframe(df_functions, use_container_width=True, hide_index=True)
 st.markdown("## Các ký hiệu Markdown đã dùng")
 
 markdown_data = {
-    "Số thứ tự": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Số thứ tự": [1, 2, 3, 4, 5, 6, 7, 8, 9],
     "Ký hiệu Markdown": [
         "##",
         "###",
@@ -96,7 +96,8 @@ markdown_data = {
         "**text**",
         "-",
         "$$ ... $$",
-        "`text`",
+        "$...$",
+        "`text` hoặc st.code()",
         "Dòng trống giữa các đoạn"
     ],
     "Tác dụng": [
@@ -106,6 +107,7 @@ markdown_data = {
         "In đậm văn bản",
         "Tạo danh sách bullet",
         "Hiển thị công thức LaTeX dạng khối",
+        "Công thức nằm ở một dòng riêng, căn giữa",
         "Hiển thị inline code",
         "Tách đoạn văn, tạo khoảng cách giữa các khối nội dung"
     ],
@@ -116,6 +118,7 @@ markdown_data = {
         "**Vector Database**",
         "- Flat Index",
         "$$ d(q, x) \\approx ... $$",
+        "$ m = 4 $",
         "`st.title()`",
         "Dùng để tách các đoạn mô tả và nội dung ghi chú"
     ]

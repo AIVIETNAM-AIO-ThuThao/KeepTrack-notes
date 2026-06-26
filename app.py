@@ -21,10 +21,13 @@ distance_page = st.Page(
     "pages/distance_metrics_and_loss_functions.py",
     title="Distance Metrics and Loss Functions",
 )
+rag_page = st.Page(
+    "pages/pj1.2_rag_chatbot.py", 
+    title='Project 1.2. RAG Chatbox babe',)
 
 pg = st.navigation(
     {
-        "Keep Track": [home_page, vector_page, distance_page]
+        "Keep Track": [home_page, vector_page, distance_page, rag_page]
     }
 )
 
