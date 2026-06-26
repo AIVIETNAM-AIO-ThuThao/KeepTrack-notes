@@ -21,10 +21,39 @@ Việc biểu diễn dữ liệu dưới dạng vector giúp các hệ thống A
 
 st.image('assets/vectordatabase.JPG', caption='Vector Database', use_container_width=True)
 st.image('assets/embedding.JPG', caption='Embedding', use_container_width=True)
+st.header("2. So sánh công cụ Vecto Database Tools")
+functions_data = {
+    "Tool": [Faiss, Milvus, Weaviate, Weaviate, Weaviate],
+    "Đặc điểm": [
+        "Library C++/Python, không có persistence",
+        "Distributed, persistent, REST API",
+        "Semantic search, GraphQL API",
+        "SaaS, dễ deploy, auto-scale",
+        "Extension cho PostgreSQL"
+        ],
+    "Iu điểm": [
+    "Hiệu năng rất cao, nhiều thuật toán ANN",
+    "Production-ready, hỗ trợ nhiều metric",
+    "Tích hợp mô hình ngôn ngữ, dễ dùng",
+    "Không cần quản lý hạ tầng",
+    "Dễ tích hợp với RDBMS",
+],
+"Khuyết điểm": [
+    'Không lưu trữ dữ liệu lâu dài',
+    'Cần vận hành hạ tầng riêng',
+    'Hạn chế backend tùy biến',
+    'Phụ thuộc vào nhà cung cấp',
+    'Hiệu năng thấp hơn chuyên dụng',
+    
+]
+}
+
+df_functions = pd.DataFrame(functions_data)
+st.dataframe(df_functions, use_container_width=True, hide_index=True)
 
 # 2. INDEXING
 
-st.header("2. Indexing trong Vector Database")
+st.header("3. Indexing trong Vector Database")
 
 st.markdown("""
 Sau khi dữ liệu đã được chuyển đổi thành vector embedding, bước tiếp theo là **indexing** — tức xây dựng **chỉ mục** để tối ưu hoá khả năng truy vấn và tìm kiếm.
@@ -39,8 +68,8 @@ Do đó, các kỹ thuật indexing được sử dụng để:
 st.markdown("## Các loại index")
 
 
-# 2.1 FLAT INDEX
-st.subheader("2.1. Flat Index")
+# 3.1 FLAT INDEX
+st.subheader("3.1. Flat Index")
 
 st.markdown("""
 **Flat Index** là một tên gọi khác của tìm kiếm brute-force. Toàn bộ các vector được lưu trữ trong một cấu trúc chỉ mục duy nhất mà **không có bất kỳ tổ chức phân cấp nào**. Khi có một vector truy vấn, hệ thống sẽ tính khoảng cách từ vector đó tới **tất cả các vector trong dataset**, sau đó chọn ra vector gần nhất hoặc top-k vector gần nhất.
@@ -64,9 +93,9 @@ với mọi vector $x_i$ trong cơ sở dữ liệu.
 """)
 
 
-# 2.2 IVF
+# 3.2 IVF
 
-st.subheader("2.2. Inverted File Index (IVF)")
+st.subheader("3.2. Inverted File Index (IVF)")
 
 st.markdown("""
 **IVF (Inverted File Index)** là một kỹ thuật lập chỉ mục đơn giản và trực quan, thường được dùng trong các hệ thống truy xuất, và có thể được điều chỉnh cho cơ sở dữ liệu vector để thực hiện **Approximate Nearest Neighbor Search**. Ý tưởng chính của IVF là **không tìm kiếm trên toàn bộ dataset**, mà trước tiên chia dữ liệu thành nhiều **cluster**, sau đó chỉ tìm trong một số cluster phù hợp nhất với vector truy vấn.
@@ -100,9 +129,9 @@ st.markdown("""
 
 
 
-# 2.3 PQ
+# 3.3 PQ
 
-st.subheader("2.3. Product Quantization (PQ)")
+st.subheader("3.3. Product Quantization (PQ)")
 
 st.markdown("""
 **Product Quantization (PQ)** là một kỹ thuật **nén vector** và **tìm kiếm xấp xỉ** (*Approximate Nearest Neighbor Search*).  
