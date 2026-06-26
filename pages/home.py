@@ -59,7 +59,7 @@ functions_data = {
     "Hiển thị văn bản hoặc nội dung đầu ra tổng quát.",
     "Chia trang thành nhiều cột.",
     "Hiển thị khối code hoặc văn bản dạng monospace.",
-    "Hiển thị hình ảnh.",
+    "Hiển thị hình ảnh",
     "Nhúng trình phát âm thanh ",
     "Hiển thị công thức LaTeX dưới dạng một khối riêng."
 ],
@@ -69,15 +69,15 @@ functions_data = {
     'st.header("1. Tổng quan về Vector Database và Embedding")',
     'st.subheader("2.1. Flat Index")',
     'Được dùng cho phần lớn nội dung ghi chú bài học',
-    'Được dùng để hiển thị ngày hiện tại',
+    'Hiển thị ngày hiện tại',
     'Được dùng cho Day 3 và các ghi chú hướng dẫn',
-    'Được dùng để nhấn mạnh các ý chính trong phần PQ',
-    'Được dùng cho các đoạn văn bản ngắn hoặc phần footer',
+    'Nhấn mạnh các ý chính trong phần PQ',
+    'Đoạn văn bản ngắn hoặc phần footer',
     'Được dùng để đặt Day 3 và ngày hiện tại nằm cạnh nhau',
     'Được dùng cho các ví dụ PQ như [3, 51, 199, 18]',
     'Có thể dùng cho sơ đồ và hình minh họa',
-    'Có thể dùng cho phần âm thanh giải thích bài học',
-    'Có thể dùng cho các công thức trong distance metrics và loss functions'
+    'Chèn âm thanh tùy ý',
+    'Các công thức trong distance metrics và loss functions'
 ]
 }
 

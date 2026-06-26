@@ -25,9 +25,7 @@ st.code("""
         language="python")
 
 st.header("2. Xây dựng chương trình RAG")
-st.markdown("### pipeline RAG (5 bước):")
-st.markdown("""**Đọc dữ liệu → Chunking → Embedding + Lưu vector vào database → Retrieve → Hỏi đáp**     
-            """)
+st.markdown("#### pipeline RAG (5 bước):**Đọc dữ liệu → Chunking → Embedding + Lưu vector vào database → Retrieve → Hỏi đáp**")
 st.subheader("2.1. Đọc toàn bộ nội dung từ 1 file PDF")
 st.code(r"""
 # Đọc file PDF
@@ -39,6 +37,7 @@ full_text = "\n".join(page.extract_text() or "" for page in reader.pages)
 print("Số trang:", len(reader.pages))
 print("Tổng ký tự:", len(full_text)))""",
  language="python")
+
 
 st.subheader("2.2. Chunking")
 
@@ -95,7 +94,7 @@ print(chunks[0][:300])
 language="python")
 
 st.subheader("🦧 Chọn size của chunk và chunk_overlap phù hợp")
-st.markdown('''
+st.warning('''
             - chunk_size quá nhỏ (ví dụ: 200) sẽ làm mất ngữ cảnh, câu trả lời thiếu thông tin.
             - chunk_size quá lớn (ví dụ: 5000) sẽ lẫn nhiều thông tin nhiễu. 
             - Giá trị 1000 là một điểm khởi đầu tốt cho hầu hết các trường hợp. 
@@ -103,7 +102,7 @@ st.markdown('''
 
 st.subheader("2.3. Embedding và lưu vào Vector Database")
 
-st.markdown('''**Embedding** là quá trình chuyển văn bản thành một dãy số (vector) sao cho các đoạn văn có ý nghĩa giống nhau sẽ có vector gần nhau trong không gian. Ví dụ: câu "YOLO là mô hình phát hiện vật thể" và "Object Detection với YOLO” sẽ có vector rất gần nhau, dù
+st.markdown('''**Embedding** là quá trình chuyển văn bản thành một dãy số (vector) sao cho các đoạn văn có ý nghĩa giống nhau sẽ có vector gần nhau trong không gian. Ví dụ: câu "YOLO là mô hình phát hiện vật thể" và "Object Detection với YOLO" sẽ có vector rất gần nhau, dù
 dùng từ ngữ khác nhau. Hãy hình dung đơn giản: nếu mỗi đoạn văn bản là một điểm trên bản đồ, thì embedding giúp đặt các đoạn có nội dung giống nhau gần nhau trên bản đồ đó.
 
             ''')
@@ -131,6 +130,13 @@ collection.add(
 print("Đã index:", collection.count(), "chunks"))  # In ra số lượng chunks đã được index thành công""",
 language="python")   
 
+st.info('''Nâng cấp mô hình Embedding (Vector hóa) với:
+        
+- nomic-embed-text: Nhẹ hơn, tốc độ nhanh, phù hợp máy cấu hình thấp. Cài bằng ollama pull nomic-embed-text rồi đổi EMBED_MODEL = ”nomic-embed-text”.
+
+- Nếu dùng Python thuần (không qua Ollama), thử sentence-transformers với model BAAI/bge-m3 
+hoặc intfloat/multilingual-e5-large, là model embedding đa ngôn ngữ mạnh trên bảng xếp hạng MTEB và xử lý tiếng Việt tốt.''')
+
 st.subheader("2.4. Retrieve")
 st.markdown('''Khi có câu hỏi, chúng ta cần tìm những chunk có nội dung liên quan nhất. 
             ChromaDB thực hiện việc này bằng cách so sánh vector của câu hỏi với tất cả vector trong database''')
@@ -150,7 +156,17 @@ st.code(r"""
         print(doc[:200])
         print("-" * 40)""", 
     language="python")
-st.markdown('''####
-        - K càng lớn: context càng nhiều nhưng có thể có nhiễu
-        - K càng nhỏ: context ngắn nhưng có thể thiếu thông tin
-        - Thường chọn k=3-5 để cân bằng giữa chất lượng và hiệu quả''')
+st.markdown("### 🦧 Chọn k phù hợp:")
+st.warning('''
+        - k càng lớn: context càng nhiều nhưng có thể có nhiễu
+           
+        - k càng nhỏ: context ngắn nhưng có thể thiếu thông tin
+           
+        - Thường chọn k = 3-5 để cân bằng giữa chất lượng và hiệu quả''')
+st.info('''Khi so sánh 2 vector, ChromaDB đo khoảng cách giữa chúng rồi trả về k chunk gần nhất với câu hỏi. 
+        
+        - Mặc định ChromaDB dùng khoảng cách L2 (Euclid): hai vector càng gần nhau thì nội dung càng tương đồng. 
+
+        - Nếu muốn dùng cosine similarity, ta khai báo khi tạo collection: 
+        
+        get_or_create_collection("rag", metadata={"hnsw:space": "cosine"})''')
