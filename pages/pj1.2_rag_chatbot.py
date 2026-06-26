@@ -92,3 +92,10 @@ print("Số chunks:", len(chunks))
 print(chunks[0][:300])
 """, 
 language="python")
+
+st.subheader("🦧 Chọn size của chunk và chunk_overlap phù hợp")
+st.markdown('''
+            - chunk_size quá nhỏ (ví dụ: 200) sẽ làm mất ngữ cảnh, câu trả lời thiếu thông tin.
+            - chunk_size quá lớn (ví dụ: 5000) sẽ lẫn nhiều thông tin nhiễu. 
+            - Giá trị 1000 là một điểm khởi đầu tốt cho hầu hết các trường hợp. 
+            - size của chunk_overlap nên bằng 10-20% của chunk''')
