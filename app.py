@@ -23,7 +23,7 @@ distance_page = st.Page(
 )
 rag_page = st.Page(
     "pages/pj1.2_rag_chatbot.py", 
-    title='Project 1.2. RAG Chatbox babe',)
+    title='Project 1.2. RAG Chatbot babe',)
 
 pg = st.navigation(
     {
