@@ -68,9 +68,6 @@ Do đó, các kỹ thuật indexing được sử dụng để:
 - hỗ trợ Approximate Nearest Neighbor Search (ANN) trên tập dữ liệu lớn.
 """)
 
-st.markdown("## Các loại index")
-
-
 # 3.1 FLAT INDEX
 st.subheader("3.1. Flat Index")
 
