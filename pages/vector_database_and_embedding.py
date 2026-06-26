@@ -25,7 +25,7 @@ st.image('assets/embedding.JPG', caption='Embedding', use_container_width=True)
 st.header("2. So sánh công cụ Vecto Database Tools")
 # tạo dict
 comparation = {     
-    "Tool": [Faiss, Milvus, Weaviate, Weaviate, Weaviate],
+    "Tool": ['Faiss', 'Milvus', 'Weaviate', 'Weaviate', 'Weaviate'],
     "Đặc điểm": [
         "Library C++/Python, không có persistence",
         "Distributed, persistent, REST API",
