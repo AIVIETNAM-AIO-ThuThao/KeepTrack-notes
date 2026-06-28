@@ -25,9 +25,14 @@ rag_page = st.Page(
     "pages/pj1.2_rag_chatbot.py", 
     title='Project 1.2. RAG Chatbot babe',)
 
+promt_page = st.Page(
+    "pages/prompt_techniques.py",
+    title='Prompt Techniques',
+)
+
 pg = st.navigation(
     {
-        "Keep Track": [home_page, vector_page, distance_page, rag_page]
+        "Keep Track": [home_page, vector_page, distance_page, rag_page, promt_page]
     }
 )
 
